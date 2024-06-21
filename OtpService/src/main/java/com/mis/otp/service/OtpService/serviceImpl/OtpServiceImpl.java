@@ -64,11 +64,17 @@ public class OtpServiceImpl implements OtpService {
 		return false;
 	}
 
-	public boolean validateOtp1(String phoneNumber, String otpCode) {
-        String key = phoneNumber + "_someUserId"; // Adjust the key accordingly
-        HashOperations<String, Object, Object> hashOps = this.stringRedisTemplate.opsForHash();
-        String storedOtp = (String) hashOps.get(OTP_MAP, key);
-        return otpCode.equals(storedOtp);
-    }
+	 public boolean validateOtp(String phoneNumber, String otpCode, String userId) {
+	        String key = phoneNumber + "_" + userId;
+	        HashOperations<String, Object, Object> hashOps = this.stringRedisTemplate.opsForHash();
+	        String storedOtp = (String) hashOps.get(OTP_MAP, key);
+
+	        if (storedOtp != null && storedOtp.equals(otpCode)) {
+	            hashOps.delete(OTP_MAP, key);
+	            return true;
+	        }
+
+	        return false;
+	    }
 
 }
