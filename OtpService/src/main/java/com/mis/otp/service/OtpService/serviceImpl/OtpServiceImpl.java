@@ -21,11 +21,10 @@ public class OtpServiceImpl implements OtpService {
 	private OtpDao otpDao;
 
 	private final StringRedisTemplate stringRedisTemplate;
-
 	private static final String OTP_MAP = "otp_map";
-
 	private static final Logger logger = LoggerFactory.getLogger(OtpServiceImpl.class);
 
+	@Autowired
 	public OtpServiceImpl(StringRedisTemplate stringRedisTemplate) {
 		this.stringRedisTemplate = stringRedisTemplate;
 	}
@@ -65,6 +64,11 @@ public class OtpServiceImpl implements OtpService {
 		return false;
 	}
 
-
+	public boolean validateOtp1(String phoneNumber, String otpCode) {
+        String key = phoneNumber + "_someUserId"; // Adjust the key accordingly
+        HashOperations<String, Object, Object> hashOps = this.stringRedisTemplate.opsForHash();
+        String storedOtp = (String) hashOps.get(OTP_MAP, key);
+        return otpCode.equals(storedOtp);
+    }
 
 }

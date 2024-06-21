@@ -1,14 +1,12 @@
 package com.mis.otp.service.OtpService.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mis.otp.serivce.OtpService.request.OtpRequest;
-import com.mis.otp.service.OtpService.model.Otp;
-import com.mis.otp.service.OtpService.response.OtpResponse;
 import com.mis.otp.service.OtpService.service.OtpService;
 
 @RestController
@@ -19,13 +17,19 @@ public class OtpController {
     private OtpService otpService;
 
     @PostMapping("/generate")
-    public Otp generateOtp(@RequestBody OtpRequest otpRequest) {
-        return otpService.generateOtp(otpRequest.getPhoneNumber());
+    public ResponseEntity<String> generateOtp(@RequestParam String phoneNumber, @RequestParam String userId) {
+        otpService.generateOtpAndStoreInRedis(phoneNumber, userId);
+        return ResponseEntity.ok("OTP generated successfully");
     }
 
+
     @PostMapping("/validate")
-    public OtpResponse validateOtp(@RequestBody OtpRequest otpRequest) {
-        boolean isValid = otpService.validateOtp(otpRequest.getPhoneNumber(), otpRequest.getOtpCode());
-        return new OtpResponse(isValid);
+    public ResponseEntity<String> validateOtp(@RequestParam String phoneNumber, @RequestParam String userId, @RequestParam String otpCode) {
+        boolean isValid = otpService.validateOtp1(phoneNumber, otpCode);
+        if (isValid) {
+            return ResponseEntity.ok("OTP is valid");
+        } else {
+            return ResponseEntity.status(400).body("Invalid OTP");
+        }
     }
 }

@@ -9,5 +9,4 @@ public interface OtpDao {
 	Otp getOtp(String phoneNumber);
 
 	void deleteOtp(String phoneNumber);
-
 }

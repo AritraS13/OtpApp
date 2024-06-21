@@ -3,8 +3,8 @@ package com.mis.otp.service.OtpService.daoImpl;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mis.otp.service.OtpService.dao.OtpDao;
@@ -13,23 +13,33 @@ import com.mis.otp.service.OtpService.model.Otp;
 @Repository
 public class OtpDaoImpl implements OtpDao {
 
-	private static final String OTP_KEY_PREFIX = "OTP_";
+	private static final String OTP_MAP = "otp_map";
+	private final StringRedisTemplate stringRedisTemplate;
 
 	@Autowired
-	private RedisTemplate<String, Otp> redisTemplate;
+	public OtpDaoImpl(StringRedisTemplate stringRedisTemplate) {
+		this.stringRedisTemplate = stringRedisTemplate;
+	}
 
+	@Override
 	public void saveOtp(Otp otp) {
-		ValueOperations<String, Otp> ops = redisTemplate.opsForValue();
-		ops.set(OTP_KEY_PREFIX + otp.getPhoneNumber(), otp, 5, TimeUnit.MINUTES); // Expires in 5 minutes
+		String key = otp.getPhoneNumber();
+		HashOperations<String, Object, Object> hashOps = stringRedisTemplate.opsForHash();
+		hashOps.put(OTP_MAP, key, otp.getOtpCode());
+		stringRedisTemplate.expire(OTP_MAP, otp.getExpirationTime(), TimeUnit.MILLISECONDS);
 	}
 
+	
 	public Otp getOtp(String phoneNumber) {
-		ValueOperations<String, Otp> ops = redisTemplate.opsForValue();
-		return ops.get(OTP_KEY_PREFIX + phoneNumber);
+		HashOperations<String, Object, Object> hashOps = stringRedisTemplate.opsForHash();
+		String otpCode = (String) hashOps.get(OTP_MAP, phoneNumber);
+		// Assuming expiration time is handled by Redis TTL
+		return new Otp(phoneNumber, otpCode, 2);
 	}
 
+	@Override
 	public void deleteOtp(String phoneNumber) {
-		redisTemplate.delete(OTP_KEY_PREFIX + phoneNumber);
+		stringRedisTemplate.opsForHash().delete(OTP_MAP, phoneNumber);
 	}
 
 }

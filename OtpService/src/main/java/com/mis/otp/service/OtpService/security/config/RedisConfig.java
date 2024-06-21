@@ -14,14 +14,14 @@ import com.mis.otp.service.OtpService.model.Otp;
 @Configuration
 public class RedisConfig {
 
-	@Bean
-	public RedisTemplate<String, Otp> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-		RedisTemplate<String, Otp> redisTemplate = new RedisTemplate<>();
-		redisTemplate.setConnectionFactory(redisConnectionFactory);
-		redisTemplate.setKeySerializer(new StringRedisSerializer());
-		redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-		return redisTemplate;
-	}
+//	@Bean
+//	public RedisTemplate<String, Otp> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+//		RedisTemplate<String, Otp> redisTemplate = new RedisTemplate<>();
+//		redisTemplate.setConnectionFactory(redisConnectionFactory);
+//		redisTemplate.setKeySerializer(new StringRedisSerializer());
+//		redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+//		return redisTemplate;
+//	}
 
 	@Bean
 	JedisConnectionFactory jedisConnectionFactory() {
