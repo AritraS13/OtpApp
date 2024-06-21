@@ -1,6 +1,6 @@
-package com.mis.otp.serivce.OtpService.service;
+package com.mis.otp.service.OtpService.service;
 
-import com.mis.otp.serivce.OtpService.model.Otp;
+import com.mis.otp.service.OtpService.model.Otp;
 
 public interface OtpService {
 	

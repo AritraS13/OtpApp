@@ -1,4 +1,4 @@
-package com.mis.otp.serivce.OtpService.daoImpl;
+package com.mis.otp.service.OtpService.daoImpl;
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,10 +7,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
 
-import com.mis.otp.serivce.OtpService.model.Otp;
+import com.mis.otp.service.OtpService.dao.OtpDao;
+import com.mis.otp.service.OtpService.model.Otp;
 
 @Repository
-public class OtpDaoImpl {
+public class OtpDaoImpl implements OtpDao {
 
 	private static final String OTP_KEY_PREFIX = "OTP_";
 

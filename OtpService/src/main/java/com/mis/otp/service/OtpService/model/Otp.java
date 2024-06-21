@@ -1,4 +1,4 @@
-package com.mis.otp.serivce.OtpService.model;
+package com.mis.otp.service.OtpService.model;
 
 import lombok.Getter;
 import lombok.Setter;
