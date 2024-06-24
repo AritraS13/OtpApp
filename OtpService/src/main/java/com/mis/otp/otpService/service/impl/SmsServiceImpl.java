@@ -11,22 +11,22 @@ import java.io.IOException;
 public class SmsServiceImpl implements SmsService {
 
 
-    @Value("${sms.action}")
+    @Value("${odi.gov.sms.action}")
     private String action;
 
-    @Value("${sms.source}")
+    @Value("${odi.gov.sms.source}")
     private String source;
 
-    @Value("${sms.department.id}")
+    @Value("${odi.gov.sms.department.id}")
     private String departmentId;
 
-    @Value("${sms.template.id}")
+    @Value("${odi.gov.sms.template.id}")
     private String templateId;
 
-    @Value("${sms.content.format}")
+    @Value("${odi.gov.sms.content.format}")
     private String smsContentFormat;
 
-    @Value("${sms.api.url}")
+    @Value("${odi.gov.sms.api.url}")
     private String apiUrl;
 
     public void sendOtp(String phoneNumber, String otp) throws IOException {
