@@ -1,4 +1,4 @@
-package com.mis.otp.OtpService;
+package com.mis.otp.otpService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

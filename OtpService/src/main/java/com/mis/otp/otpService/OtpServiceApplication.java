@@ -1,4 +1,4 @@
-package com.mis.otp.OtpService;
+package com.mis.otp.otpService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

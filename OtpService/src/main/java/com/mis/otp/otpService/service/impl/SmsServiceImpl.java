@@ -1,6 +1,6 @@
-package com.mis.otp.OtpService.service.impl;
+package com.mis.otp.otpService.service.impl;
 
-import com.mis.otp.OtpService.service.SmsService;
+import com.mis.otp.otpService.service.SmsService;
 import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

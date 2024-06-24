@@ -1,4 +1,4 @@
-package com.mis.otp.OtpService.model;
+package com.mis.otp.otpService.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

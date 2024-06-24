@@ -1,4 +1,4 @@
-package com.mis.otp.OtpService.response;
+package com.mis.otp.otpService.response;
 
 import lombok.Data;
 

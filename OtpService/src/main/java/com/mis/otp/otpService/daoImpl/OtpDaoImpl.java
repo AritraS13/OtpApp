@@ -1,14 +1,14 @@
-package com.mis.otp.OtpService.daoImpl;
+package com.mis.otp.otpService.daoImpl;
 
 import java.util.concurrent.TimeUnit;
 
-import com.mis.otp.OtpService.dao.OtpDao;
+import com.mis.otp.otpService.dao.OtpDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.mis.otp.OtpService.model.Otp;
+import com.mis.otp.otpService.model.Otp;
 
 @Repository
 public class OtpDaoImpl implements OtpDao {

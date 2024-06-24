@@ -1,11 +1,10 @@
-package com.mis.otp.OtpService.service.impl;
+package com.mis.otp.otpService.service.impl;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import com.mis.otp.OtpService.dao.OtpDao;
-import com.mis.otp.OtpService.model.Otp;
-import com.mis.otp.OtpService.service.SmsService;
+import com.mis.otp.otpService.dao.OtpDao;
+import com.mis.otp.otpService.service.SmsService;
 import io.micrometer.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,7 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.mis.otp.OtpService.service.OtpService;
+import com.mis.otp.otpService.service.OtpService;
 
 @Service
 public class OtpServiceImpl implements OtpService {

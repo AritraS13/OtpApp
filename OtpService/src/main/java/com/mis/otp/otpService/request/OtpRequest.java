@@ -1,4 +1,4 @@
-package com.mis.otp.OtpService.request;
+package com.mis.otp.otpService.request;
 
 import lombok.Getter;
 import lombok.Setter;

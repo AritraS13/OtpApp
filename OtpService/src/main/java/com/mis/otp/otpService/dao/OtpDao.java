@@ -1,6 +1,6 @@
-package com.mis.otp.OtpService.dao;
+package com.mis.otp.otpService.dao;
 
-import com.mis.otp.OtpService.model.Otp;
+import com.mis.otp.otpService.model.Otp;
 
 public interface OtpDao {
 
