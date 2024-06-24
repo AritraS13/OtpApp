@@ -1,4 +1,4 @@
-package com.mis.otp.service.OtpService.security.config;
+package com.mis.otp.OtpService.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
